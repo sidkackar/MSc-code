@@ -55,7 +55,7 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
             sigSpikes = spikeTimes(clu == cluList(i));
             eventIndex = 1:length(eventTimes);
 
-            % allSpikes contains all spike times in the specified time window, and is later split into preSpikes and postSpikes
+            % allSpikes contains all spike times in the specified time window, and is later split into preSpikes (before event) and postSpikes (after event)
 
             allSpikes = arrayfun(@(x) sigSpikes(sigSpikes >= (eventTimes(x)-timePreUp) & sigSpikes <= (eventTimes(x)+timePostUp))-eventTimes(x), eventIndex, 'uni',0);
             preSpikes = cellfun(@(x) x(x <= 0 - timePreLow), allSpikes, 'uni',0);
