@@ -7,7 +7,7 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % spikeTimes = all time points at which neuronal activity is measured
         % clu = contains IDs/amplitudes (not sure as I wrote this 2 years ago) of clusters
         % eventTimes = the time points of the event (eg. specific stimuli - auditory/visual/both etc.) the response to which we want to measure
-        % timeWinPre/timeWinPost = the specified time window before (Pre) / after (Post) the speicified event, each is later resolved into an upper and lower limit
+        % timeWinPre/timeWinPost = the specified time window before (Pre) / after (Post) the specified event, each is later resolved into an upper and lower limit
         
         % Removing trials where the test subject made no response
         
