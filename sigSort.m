@@ -1,6 +1,8 @@
 function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPost)
         
-        % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli. It acts as a sort of regression function, as by using a paired t-test, it proves the relationship between the stimulus and neuronal activity.
+        % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli. It acts as a sort of 
+        % regression function, as by using a paired t-test, it proves the relationship between the stimulus and neuronal activity. Incidentally, neural networks can be thought
+        % of as regression functions. Is there a link here?
         
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
@@ -61,8 +63,9 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
             preSpikes = cellfun(@(x) x(x <= 0 - timePreLow), allSpikes, 'uni',0);
             postSpikes = cellfun(@(x) x(x >= 0 - timePostLow), allSpikes, 'uni',0);
 
-            % preSpikeIdx and postSpikeIdx are a sort of measure of no. of spikes per unit time before and after the event, which are compared through a paired t-test to determine statistical significance of response
-
+            % preSpikeIdx and postSpikeIdx are a sort of measure of no. of spikes per unit time before and after the event, which are compared through a paired t-test to 
+            % determine statistical significance of response
+            
             preSpikeIdx = cellfun(@length, preSpikes)/(timePreUp-timePreLow);
             postSpikeIdx = cellfun(@length, postSpikes)/(timePostUp-timePostLow);
             z = ttest(postSpikeIdx, preSpikeIdx, 'alpha', 0.05/sqrt(length(cluList)))
