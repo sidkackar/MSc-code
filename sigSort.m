@@ -1,6 +1,6 @@
 function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPost)
         
-        % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli.
+        % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli. It acts as a sort of regression function, as by using a paired t-test, it proves the relationship between the stimulus and neuronal activity.
         
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
