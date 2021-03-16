@@ -4,6 +4,9 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % regression function, as by using a paired t-test, it proves the relationship between the stimulus and neuronal activity. Incidentally, neural networks can be thought
         % of as regression functions. Is there a link here?
         
+        % What I have done here is compare the neural activity after the stimulus to the baseline neuronal activity before the stimulus, in the time window of 1 sec for each as
+        % default. I have carried out a paired t-test between the neuronal activity on both sides to test for significance.  
+        
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
         % spikeTimes = all time points at which neuronal activity is measured
