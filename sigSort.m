@@ -5,7 +5,9 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % of as regression functions. Is there a link here?
         
         % What I have done here is compare the neural activity after the stimulus to the baseline neuronal activity before the stimulus, in the time window of 1 sec for each as
-        % default. I have carried out a paired t-test between the neuronal activity on both sides to test for significance.  
+        % default. I have carried out a paired t-test between the neuronal activity on both sides to test for significance. One way this method could be better than shuffle
+        % tests is that it takes into account the variability in baseline firing rates of biological neurons across experimental sessions, whereas shuffle tests normalize or 
+        % standardise the neural noise.
         
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
