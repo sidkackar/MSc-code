@@ -4,6 +4,9 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % neural activity after the stimulus to the baseline neuronal activity before the stimulus, in the time window of 1 sec for each as default. I have carried out 
         % a paired t-test between the neuronal activity on both sides to test for significance.
         
+        % It is pointed out that methods based on the paired t test require defining a time window, and so, shuffle tests are preferred for this task. But, given that I
+        % am taking a broad default time window of 1 sec both before and after the stimulus, is it enough to overcome this deficiency?
+        
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
         % spikeTimes = all time points at which neuronal activity is measured
