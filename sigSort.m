@@ -3,6 +3,8 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli. It compares the 
         % neural activity after the stimulus to the baseline neuronal activity before the stimulus, in the time window of 1 sec for each as default. I have carried out 
         % a paired t-test between the neuronal activity on both sides to test for significance.
+
+        % The inter-trial interval in the behavioral task is 2 sec, which rules out any effect of activity from the previous trial or anticipatory movement.
         
         % sig = output variable, containing IDs of neurons/clusters which are responsive to specified stimuli
         % obj = the processed experimental data, can be specified by date/day/session/experimental conditions
@@ -63,11 +65,13 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
             preSpikes = cellfun(@(x) x(x <= 0 - timePreLow), allSpikes, 'uni',0);
             postSpikes = cellfun(@(x) x(x >= 0 - timePostLow), allSpikes, 'uni',0);
 
-            % preSpikeIdx and postSpikeIdx are a sort of measure of no. of spikes per unit time before and after the event, which are compared through a paired t-test to 
-            % determine statistical significance of response
+            % preSpikeIdx and postSpikeIdx are a measure of no. of spikes per unit time before and after the event
             
             preSpikeIdx = cellfun(@length, preSpikes)/(timePreUp-timePreLow);
             postSpikeIdx = cellfun(@length, postSpikes)/(timePostUp-timePostLow);
+
+            % To correct for multiple testing, a Bonferroni correction is used and alpha is divided by the square root of the no. of hypotheses tested
+
             z = ttest(postSpikeIdx, preSpikeIdx, 'alpha', 0.05/sqrt(length(cluList)))
             if z == 1; sig(i) = cluList(i); end    
         end
