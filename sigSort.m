@@ -3,10 +3,7 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
         % sigSort takes the data block file (obj) as the minimum required input and outputs the IDs of neurons/clusters which are responsive to stimuli. It compares the 
         % neural activity after the stimulus to the baseline neuronal activity before the stimulus, in the time window of 1 sec for each as default. I have carried out 
         % a paired t-test between the neuronal activity on both sides to test for significance. I use a parametric test as we can consider this data to be normally
-        % distributed. Given that I use a t test to determine the relationship between stimulus and response, can sigSort be thought of as a regression function?
-
-        % As an aside, can this function also be used to analyse matrices of natural numbers, for example, to select prime numbers or to find the largest prime in a
-        % given range? The numbers can be expressed in binary, to reduce computational load.
+        % distributed.
 
         % The inter-trial interval in the behavioral task is 2 sec, which rules out any effect of activity from the previous trial or anticipatory movement.
         
