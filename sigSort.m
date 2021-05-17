@@ -70,7 +70,7 @@ function [sig] = sigSort(obj, spikeTimes, clu, eventTimes, timeWinPre, timeWinPo
             preSpikeIdx = cellfun(@length, preSpikes)/(timePreUp-timePreLow);
             postSpikeIdx = cellfun(@length, postSpikes)/(timePostUp-timePostLow);
 
-            % To correct for multiple testing, a Bonferroni correction is used and alpha is divided by the square root of the no. of hypotheses tested
+            % To correct for multiple testing, a modified Bonferroni correction is used and alpha is divided by the square root of the no. of hypotheses tested
 
             z = ttest(postSpikeIdx, preSpikeIdx, 'alpha', 0.05/sqrt(length(cluList)))
             if z == 1; sig(i) = cluList(i); end    
